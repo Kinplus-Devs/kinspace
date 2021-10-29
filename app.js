@@ -28,7 +28,7 @@ const io = new Server(server)
 
 // Local Middlewares
 const appError = require('./middlewares/error')
-// const connectDB = require('./config/db')
+  // const connectDB = require('./config/db')
 
 // Routes
 const auth = require('./routes/authRoutes')
@@ -67,22 +67,22 @@ app.get('/', (req, res) => {
 app.get('/:room', (req, res) => {
   res.status(200).render('index', {
     path: '/',
-    pageTitle: 'Zoom Home',
+    pageTitle: 'Kinstream',
     roomId: req.params.room
   })
 })
 
 io.on('connection', socket => {
-  socket.on('join-room', (roomId,userId) => {
-    console.log(userId,roomId)
+  socket.on('join-room', (roomId, userId) => {
+    console.log(userId, roomId)
     socket.join(roomId)
-    socket.broadcast.to(roomId).emit('user-connected',userId)
+    socket.broadcast.to(roomId).emit('user-connected', userId)
 
     socket.on('disconnect', () => {
       socket.broadcast.to(roomId).emit('user-disconnected', userId)
     })
   })
-  
+
 })
 
 app.use(appError)
