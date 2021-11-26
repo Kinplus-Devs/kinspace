@@ -1,0 +1,5 @@
+---
+deployment:
+  tasks:
+    - export DEPLOYPATH=/home/fethipae/stream.kinplusgroup.com/
+    - /bin/cp -R * $DEPLOYPATH
